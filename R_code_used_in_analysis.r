@@ -87,6 +87,7 @@ wtaS_future<-dataToAnalyze$Spotify_WTA[!is.na(dataToAnalyze$Spotify_WTA) & dataT
 wtaS_now<-dataToAnalyze$Spotify_WTA[!is.na(dataToAnalyze$Spotify_WTA) & dataToAnalyze$cond=="now"]
 wilcox.test(wtaS_now,wtaS_future)
 
+###
 
 ### Table 6: Kruskal-Wallis
 
@@ -99,9 +100,24 @@ with(dataToAnalyze,kruskal.test(list(AmazonNow_WTA,AmazonDay_WTA, AmazonWeek_WTA
 with(dataToAnalyze,kruskal.test(list(SpotifyBuyer_WTP,SpotifyNow_WTA,SpotifyDay_WTA, SpotifyWeek_WTA, SpotifyMonth_WTA)))
 with(dataToAnalyze,kruskal.test(list(SpotifyNow_WTA,SpotifyDay_WTA, SpotifyWeek_WTA, SpotifyMonth_WTA)))
 
-### Table 7: Wilcoxon test for differences with respect to the “Now” WTA
+### Table 7: Wilcoxon test for WTP with respect to the “Now” WTA
+#Mug
+wtpM<-dataToAnalyze$Mug_assess[dataToAnalyze$cond=="buyer"]
+wtaM_now<-dataToAnalyze$Mug_assess[dataToAnalyze$cond=="now"]
+wilcox.test(wtpM,wtaM_now, alternative = 'less')
 
-wtaM_now<-dataToAnalyze$Mug_WTA[!is.na(dataToAnalyze$Mug_WTA) & dataToAnalyze$cond=="now"]
+#Amazon
+wtpA<-dataToAnalyze$Amazon_assess[dataToAnalyze$cond=="buyer"]
+wtaA_now<-dataToAnalyze$Amazon_assess[dataToAnalyze$cond=="now"]
+wilcox.test(wtpA,wtaA_now, alternative = 'less')
+
+#Spotify
+wtpS<-dataToAnalyze$Spotify_assess[dataToAnalyze$cond=="buyer"]
+wtaS_now<-dataToAnalyze$Spotify_assess[dataToAnalyze$cond=="now"]
+wilcox.test(wtpS,wtaS_now, alternative = 'less')
+
+### Table 8: Wilcoxon test for differences with respect to the “Now” WTA
+
 wtaM_day<-dataToAnalyze$Mug_WTA[!is.na(dataToAnalyze$Mug_WTA) & dataToAnalyze$cond=="day"]
 wtaM_week<-dataToAnalyze$Mug_WTA[!is.na(dataToAnalyze$Mug_WTA) & dataToAnalyze$cond=="week"]
 wtaM_month<-dataToAnalyze$Mug_WTA[!is.na(dataToAnalyze$Mug_WTA) & dataToAnalyze$cond=="month"]
@@ -110,7 +126,6 @@ wilcox.test(wtaM_now,wtaM_week, alternative="less")
 wilcox.test(wtaM_now,wtaM_month, alternative="less")
 
 
-wtaA_now<-dataToAnalyze$Amazon_WTA[!is.na(dataToAnalyze$Amazon_WTA) & dataToAnalyze$cond=="now"]
 wtaA_day<-dataToAnalyze$Amazon_WTA[!is.na(dataToAnalyze$Amazon_WTA) & dataToAnalyze$cond=="day"]
 wtaA_week<-dataToAnalyze$Amazon_WTA[!is.na(dataToAnalyze$Amazon_WTA) & dataToAnalyze$cond=="week"]
 wtaA_month<-dataToAnalyze$Amazon_WTA[!is.na(dataToAnalyze$Amazon_WTA) & dataToAnalyze$cond=="month"]
@@ -118,7 +133,6 @@ wilcox.test(wtaA_now,wtaA_day, alternative="less")
 wilcox.test(wtaA_now,wtaA_week, alternative="less")
 wilcox.test(wtaA_now,wtaA_month, alternative="less")
 
-wtaS_now<-dataToAnalyze$Spotify_WTA[!is.na(dataToAnalyze$Spotify_WTA) & dataToAnalyze$cond=="now"]
 wtaS_day<-dataToAnalyze$Spotify_WTA[!is.na(dataToAnalyze$Spotify_WTA) & dataToAnalyze$cond=="day"]
 wtaS_week<-dataToAnalyze$Spotify_WTA[!is.na(dataToAnalyze$Spotify_WTA) & dataToAnalyze$cond=="week"]
 wtaS_month<-dataToAnalyze$Spotify_WTA[!is.na(dataToAnalyze$Spotify_WTA) & dataToAnalyze$cond=="month"]
@@ -127,7 +141,7 @@ wilcox.test(wtaS_now,wtaS_week, alternative="less")
 wilcox.test(wtaS_now,wtaS_month, alternative="less")
 
 
-### Table 8: jonckheere test
+### Table 9: Jonckheere-Terpstra test
 jonckheere.test(dataToAnalyze$Mug_assess[dataToAnalyze$cond2!="buyer"],dataToAnalyze$cond2[dataToAnalyze$cond2!="buyer"],alternative = "increasing")
 jonckheere.test(dataToAnalyze$Amazon_assess[dataToAnalyze$cond2!="buyer"],dataToAnalyze$cond2[dataToAnalyze$cond2!="buyer"],alternative = "increasing")
 jonckheere.test(dataToAnalyze$Spotify_assess[dataToAnalyze$cond2!="buyer"],dataToAnalyze$cond2[dataToAnalyze$cond2!="buyer"],alternative = "increasing")
